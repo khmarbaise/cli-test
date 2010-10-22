@@ -12,7 +12,7 @@ import com.beust.jcommander.ParameterException;
 /**
  * Testing the parameters for the scan command.
  */
-public class SupoSECLIScanCommandTest {
+public class ScanCommandTest {
 
     /**
      * This must produce an exception, cause the --url

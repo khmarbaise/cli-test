@@ -1,8 +1,10 @@
 package com.soebes.cli.cli_test;
 
 import com.beust.jcommander.JCommander;
+import java.util.ArrayList;
 
 public class SupoSECLI {
+    public static final String PROGRAMM_NAME = "supose";
 
     public static final String SCAN_COMMAND = "scan";
     public static final String SEARCH_COMMAND = "search";
@@ -11,21 +13,25 @@ public class SupoSECLI {
     private MainCommand mainCommand;
     private ScanCommand scanCommand;
     private SearchCommand searchCommand;
+    private MergeCommand mergeCommand;
+
     private JCommander commander;
 
     public SupoSECLI(String[] args) {
-        this.mainCommand = new MainCommand();
+        mainCommand = new MainCommand();
 
-        this.scanCommand = new ScanCommand();
-        this.searchCommand = new SearchCommand();
+        scanCommand = new ScanCommand();
+        searchCommand = new SearchCommand();
+        mergeCommand = new MergeCommand();
 
-        this.commander = new JCommander(mainCommand);
+        commander = new JCommander(mainCommand);
 
-        this.commander.addCommand(SCAN_COMMAND, scanCommand);
-        this.commander.addCommand(SEARCH_COMMAND, searchCommand);
+        getCommander().addCommand(SCAN_COMMAND, scanCommand);
+        getCommander().addCommand(SEARCH_COMMAND, searchCommand);
+        getCommander().addCommand(MERGE_COMMAND, mergeCommand);
 
-        this.commander.setProgramName("supose");
-        this.commander.parse(args);
+        getCommander().setProgramName(PROGRAMM_NAME);
+        getCommander().parse(args);
     }
 
     public boolean isScanCommand() {
@@ -38,6 +44,14 @@ public class SupoSECLI {
 
     public boolean isSearchCommand() {
         if (SEARCH_COMMAND.equals(getCommander().getParsedCommand())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isMergeCommand() {
+        if (MERGE_COMMAND.equals(getCommander().getParsedCommand())) {
             return true;
         } else {
             return false;
@@ -59,4 +73,10 @@ public class SupoSECLI {
     public SearchCommand getSearchCommand() {
         return this.searchCommand;
     }
+
+    public MergeCommand getMergeCommand() {
+        return mergeCommand;
+    }
+
+
 }

@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 /**
  * Testing the parameters for the search command.
  */
-public class SupoSECLISearchCommandTest {
+public class SearchCommandTest {
 
     @Test
     public void searchCommandMissingURLTest() {
