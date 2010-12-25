@@ -1,7 +1,6 @@
 package com.soebes.cli.cli_test;
 
 import com.beust.jcommander.JCommander;
-import java.util.ArrayList;
 
 public class SupoSECLI {
     public static final String PROGRAMM_NAME = "supose";
