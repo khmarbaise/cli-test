@@ -17,7 +17,7 @@
 	<scm>
 		<developerConnection>scm:git:git@github.com:khmarbaise/cli-test.git</developerConnection>
 		<connection>scm:git:git://github.com/khmarbaise/cli-test.git</connection>
-		<url>https://github.com/khmarbaise/cli-test<url>
+		<url>https://github.com/khmarbaise/cli-test</url>
 	</scm>
 	<build>
 		<plugins>
