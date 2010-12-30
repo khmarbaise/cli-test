@@ -19,6 +19,18 @@
 		<connection>scm:git:git://github.com/khmarbaise/cli-test.git</connection>
 		<url>https://github.com/khmarbaise/cli-test</url>
 	</scm>
+	<distributionManagement>
+		<repository>
+			<id>mvn.repository.soebes.de</id>
+			<name>SoEBeS Repository</name>
+			<url>scp://h5593.serverkompetenz.net:/usr/local/vhosts/mvn.repository.soebes.de</url>
+		</repository>
+		<site>
+			<id>mvn.supose.soebes.de</id>
+			<url>scp://h5593.serverkompetenz.net:/usr/local/vhosts/mvn.supose.soebes.de</url>
+		</site>
+	</distributionManagement>
+
 	<build>
 		<plugins>
 			<plugin>
