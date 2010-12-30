@@ -19,14 +19,16 @@ public class MergeCommand {
     @Parameter(
         names = {"--destination", "-D"},
         description = "The destination index.",
-        converter = FileConverter.class
+        converter = FileConverter.class,
+        required = true
     )
     private File destinationIndex;
 
     @Parameter(
         names = {"--index", "-I"},
         description = "The indexes you would like to merge into destination.",
-        converter = FileConverter.class
+        converter = FileConverter.class,
+        required = true
     )
     private List<File> indexes = new ArrayList<File>();
 

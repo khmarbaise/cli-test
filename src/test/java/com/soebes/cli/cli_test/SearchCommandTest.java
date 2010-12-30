@@ -16,6 +16,7 @@ public class SearchCommandTest {
         String[] args = {"search"};
         SupoSECLI cli = new SupoSECLI(args);
         Assert.assertEquals(false, cli.isScanCommand());
+        Assert.assertEquals(false, cli.isMergeCommand());
         Assert.assertEquals(true, cli.isSearchCommand());
     }
 
@@ -24,6 +25,7 @@ public class SearchCommandTest {
         String[] args = {"search", "--field", "revision", "--field", "author"};
         SupoSECLI cli = new SupoSECLI(args);
         Assert.assertEquals(false, cli.isScanCommand());
+        Assert.assertEquals(false, cli.isMergeCommand());
         Assert.assertEquals(true, cli.isSearchCommand());
 
         Assert.assertEquals(2, cli.getSearchCommand().getFields().size());
@@ -38,6 +40,7 @@ public class SearchCommandTest {
         String[] args = {"search", "--query", "ThisIsAQuery"};
         SupoSECLI cli = new SupoSECLI(args);
         Assert.assertEquals(false, cli.isScanCommand());
+        Assert.assertEquals(false, cli.isMergeCommand());
         Assert.assertEquals(true, cli.isSearchCommand());
         Assert.assertEquals("ThisIsAQuery", cli.getSearchCommand().getQuery());
     }
@@ -47,6 +50,7 @@ public class SearchCommandTest {
         String[] args = {"search", "--query", "+filename:* -path:/trunk/*"};
         SupoSECLI cli = new SupoSECLI(args);
         Assert.assertEquals(false, cli.isScanCommand());
+        Assert.assertEquals(false, cli.isMergeCommand());
         Assert.assertEquals(true, cli.isSearchCommand());
         Assert.assertEquals("+filename:* -path:/trunk/*", cli.getSearchCommand().getQuery());
     }
@@ -56,6 +60,7 @@ public class SearchCommandTest {
         String[] args = {"search", "--query", "+filename:* -path:/trunk/* +message:\"log\""};
         SupoSECLI cli = new SupoSECLI(args);
         Assert.assertEquals(false, cli.isScanCommand());
+        Assert.assertEquals(false, cli.isMergeCommand());
         Assert.assertEquals(true, cli.isSearchCommand());
         Assert.assertEquals("+filename:* -path:/trunk/* +message:\"log\"", cli.getSearchCommand().getQuery());
     }

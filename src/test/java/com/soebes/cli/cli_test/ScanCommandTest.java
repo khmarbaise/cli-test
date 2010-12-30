@@ -24,6 +24,7 @@ public class ScanCommandTest {
         String[] args = {"scan", "--create"};
         SupoSECLI cli = new SupoSECLI(args);
         Assert.assertEquals(false, cli.isSearchCommand());
+        Assert.assertEquals(false, cli.isMergeCommand());
         Assert.assertEquals(true, cli.isScanCommand());
     }
 
@@ -32,6 +33,7 @@ public class ScanCommandTest {
         String[] args = {"scan", "--url", "file:///test/url", "--create"};
         SupoSECLI cli = new SupoSECLI(args);
         Assert.assertEquals(false, cli.isSearchCommand());
+        Assert.assertEquals(false, cli.isMergeCommand());
         Assert.assertEquals(true, cli.isScanCommand());
         Assert.assertEquals(new URL("file:///test/url"), cli.getScanCommand().getUrl());
         Assert.assertEquals(true, cli.getScanCommand().isCreateIndex());
@@ -42,6 +44,7 @@ public class ScanCommandTest {
         String[] args = {"scan", "--username", "username", "--url", "file:///test/repos"};
         SupoSECLI cli = new SupoSECLI(args);
         Assert.assertEquals(false, cli.isSearchCommand());
+        Assert.assertEquals(false, cli.isMergeCommand());
         Assert.assertEquals(true, cli.isScanCommand());
         Assert.assertEquals(new URL("file:///test/repos"), cli.getScanCommand().getUrl());
         Assert.assertEquals("username", cli.getScanCommand().getUsername());
@@ -52,6 +55,7 @@ public class ScanCommandTest {
         String[] args = {"scan", "--password", "ThisIsASecret", "--url", "file:///test/repos"};
         SupoSECLI cli = new SupoSECLI(args);
         Assert.assertEquals(false, cli.isSearchCommand());
+        Assert.assertEquals(false, cli.isMergeCommand());
         Assert.assertEquals(true, cli.isScanCommand());
         Assert.assertEquals(new URL("file:///test/repos"), cli.getScanCommand().getUrl());
         Assert.assertEquals("ThisIsASecret", cli.getScanCommand().getPasswort());
@@ -62,6 +66,7 @@ public class ScanCommandTest {
         String[] args = {"scan", "--fromrev", "head", "--url", "file:///test/repos"};
         SupoSECLI cli = new SupoSECLI(args);
         Assert.assertEquals(false, cli.isSearchCommand());
+        Assert.assertEquals(false, cli.isMergeCommand());
         Assert.assertEquals(true, cli.isScanCommand());
         Assert.assertEquals(new URL("file:///test/repos"), cli.getScanCommand().getUrl());
         Assert.assertEquals(-1, cli.getScanCommand().getFromRev());
@@ -72,6 +77,7 @@ public class ScanCommandTest {
         String[] args = {"scan", "--fromrev", "XXXX", "--url", "file:///test/repos"};
         SupoSECLI cli = new SupoSECLI(args);
         Assert.assertEquals(false, cli.isSearchCommand());
+        Assert.assertEquals(false, cli.isMergeCommand());
         Assert.assertEquals(true, cli.isScanCommand());
         Assert.assertEquals(new URL("file:///test/repos"), cli.getScanCommand().getUrl());
         Assert.assertEquals(-1, cli.getScanCommand().getFromRev());
@@ -82,6 +88,7 @@ public class ScanCommandTest {
         String[] args = {"scan", "--fromrev", "123456", "--url", "file:///test/repos"};
         SupoSECLI cli = new SupoSECLI(args);
         Assert.assertEquals(false, cli.isSearchCommand());
+        Assert.assertEquals(false, cli.isMergeCommand());
         Assert.assertEquals(true, cli.isScanCommand());
         Assert.assertEquals(new URL("file:///test/repos"), cli.getScanCommand().getUrl());
         Assert.assertEquals(123456, cli.getScanCommand().getFromRev());
@@ -93,6 +100,7 @@ public class ScanCommandTest {
         SupoSECLI cli = new SupoSECLI(args);
 
         Assert.assertEquals(false, cli.isSearchCommand());
+        Assert.assertEquals(false, cli.isMergeCommand());
         Assert.assertEquals(true, cli.isScanCommand());
         Assert.assertEquals(new URL("file:///test/repos"), cli.getScanCommand().getUrl());
         Assert.assertEquals(1, cli.getScanCommand().getFromRev());
