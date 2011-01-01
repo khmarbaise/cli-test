@@ -3,6 +3,13 @@ package com.soebes.cli.cli_test;
 import com.beust.jcommander.IStringConverter;
 import com.beust.jcommander.ParameterException;
 
+/**
+ * This converter will convert the filed names into
+ * internal enumeration type {@link FieldNames}.
+ *
+ * @author Karl Heinz Marbaise
+ *
+ */
 public class FieldNamesConverter implements IStringConverter<FieldNames> {
 
     @Override

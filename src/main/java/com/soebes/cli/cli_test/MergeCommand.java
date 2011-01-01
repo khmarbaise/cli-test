@@ -1,20 +1,22 @@
 package com.soebes.cli.cli_test;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
 import com.beust.jcommander.converters.FileConverter;
-import java.io.File;
 
 /**
  * The merge command for command line.
- * 
+ *
  * @author Karl Heinz Marbaise
  */
 @Parameters(commandDescription = "Merge multiple indexes into a single index.", separators = "=")
 public class MergeCommand {
+    @Parameter(names = {"--help", "-help", "-?", "-h"}, description = "Get help for the merge command.")
+    private boolean help;
 
     @Parameter(
         names = {"--destination", "-D"},
@@ -40,5 +42,8 @@ public class MergeCommand {
         return indexes;
     }
 
-    
+    public boolean isHelp() {
+        return help;
+    }
+
 }

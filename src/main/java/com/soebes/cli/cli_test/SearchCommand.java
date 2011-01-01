@@ -8,17 +8,19 @@ import com.beust.jcommander.Parameters;
 
 /**
  * The search command for command line.
- * 
+ *
  * @author Karl Heinz Marbaise
  */
 @Parameters(separators = "=", commandDescription = "Query the index of scanned repositories to get answers.")
 public class SearchCommand {
+    @Parameter(names = {"--help", "-help", "-?", "-h"}, description = "Get help for the search command.")
+    private boolean help;
 
     @Parameter(names = {"--index", "-I"}, description = "Define the name of the index folder.")
-    private String indexName;
+    private final String indexName;
 
     @Parameter(names = {"--field", "-F"}, description = "Give the name of the fields which should be printed out.", converter = FieldNamesConverter.class)
-    private List<FieldNames> fields = new ArrayList<FieldNames>();
+    private final List<FieldNames> fields = new ArrayList<FieldNames>();
 
     @Parameter(names = { "--query", "-Q" }, description = "Define the query you would like to use for searching in the index.")
     private String query;
@@ -47,5 +49,9 @@ public class SearchCommand {
 
     public boolean isXML () {
         return xml;
+    }
+
+    public boolean isHelp() {
+        return help;
     }
 }

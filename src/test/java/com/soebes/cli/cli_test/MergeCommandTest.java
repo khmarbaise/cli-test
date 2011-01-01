@@ -36,7 +36,7 @@ public class MergeCommandTest {
         Assert.assertEquals(false, cli.isScanCommand());
         Assert.assertEquals(false, cli.isSearchCommand());
         Assert.assertEquals(true, cli.isMergeCommand());
-        
+
         Assert.assertEquals(1, cli.getMergeCommand().getIndexes().size());
     }
 
@@ -67,5 +67,25 @@ public class MergeCommandTest {
         Assert.assertEquals(2, cli.getMergeCommand().getIndexes().size());
         Assert.assertEquals("source-index-1", cli.getMergeCommand().getIndexes().get(0).getName());
         Assert.assertEquals("source-index-2", cli.getMergeCommand().getIndexes().get(1).getName());
+    }
+
+    @Test
+    public void mergeCommandGlobalHelpTest() {
+        String[] args = {"--help", "merge"};
+        SupoSECLI cli = new SupoSECLI(args);
+        Assert.assertEquals(true, cli.getMainCommand().isHelp());
+        Assert.assertEquals(false, cli.isScanCommand());
+        Assert.assertEquals(false, cli.isSearchCommand());
+        Assert.assertEquals(true, cli.isMergeCommand());
+    }
+    @Test
+    public void mergeCommandHelpTest() {
+        String[] args = { "merge", "--help" };
+        SupoSECLI cli = new SupoSECLI(args);
+        Assert.assertEquals(false, cli.getMainCommand().isHelp());
+        Assert.assertEquals(false, cli.isScanCommand());
+        Assert.assertEquals(false, cli.isSearchCommand());
+        Assert.assertEquals(true, cli.isMergeCommand());
+        Assert.assertEquals(true, cli.getMergeCommand().isHelp());
     }
 }
