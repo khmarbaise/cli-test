@@ -14,23 +14,19 @@ import com.beust.jcommander.converters.FileConverter;
  * @author Karl Heinz Marbaise
  */
 @Parameters(commandDescription = "Merge multiple indexes into a single index.", separators = "=")
-public class MergeCommand {
-    @Parameter(names = {"--help", "-help", "-?", "-h"}, description = "Get help for the merge command.")
-    private boolean help;
+public class MergeCommand extends BaseCommand implements ICommand {
 
     @Parameter(
         names = {"--destination", "-D"},
         description = "The destination index.",
-        converter = FileConverter.class,
-        required = true
+        converter = FileConverter.class
     )
     private File destinationIndex;
 
     @Parameter(
         names = {"--index", "-I"},
         description = "The indexes you would like to merge into destination.",
-        converter = FileConverter.class,
-        required = true
+        converter = FileConverter.class
     )
     private List<File> indexes = new ArrayList<File>();
 
@@ -40,10 +36,6 @@ public class MergeCommand {
 
     public List<File> getIndexes() {
         return indexes;
-    }
-
-    public boolean isHelp() {
-        return help;
     }
 
 }

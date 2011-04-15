@@ -12,9 +12,7 @@ import com.beust.jcommander.Parameters;
  * @author Karl Heinz Marbaise
  */
 @Parameters(separators = "=", commandDescription = "Query the index of scanned repositories to get answers.")
-public class SearchCommand {
-    @Parameter(names = {"--help", "-help", "-?", "-h"}, description = "Get help for the search command.")
-    private boolean help;
+public class SearchCommand extends BaseCommand implements ICommand {
 
     @Parameter(names = {"--index", "-I"}, description = "Define the name of the index folder.")
     private final String indexName;
@@ -51,7 +49,4 @@ public class SearchCommand {
         return xml;
     }
 
-    public boolean isHelp() {
-        return help;
-    }
 }

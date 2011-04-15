@@ -11,10 +11,7 @@ import com.beust.jcommander.Parameters;
  * @author Karl Heinz Marbaise
  */
 @Parameters(separators = "=", commandDescription = "Scan the contents of a repository")
-public class ScanCommand {
-
-    @Parameter(names = {"--help", "-help", "-?", "-h"}, description = "Get help for the scan command.")
-    private boolean help;
+public class ScanCommand extends BaseCommand implements ICommand {
 
     @Parameter(names = {"--index", "-I"}, description = "Define the name of the index folder.")
     private String indexName;
@@ -71,9 +68,4 @@ public class ScanCommand {
     public URL getUrl() {
         return url;
     }
-
-    public boolean isHelp() {
-        return help;
-    }
-
 }
