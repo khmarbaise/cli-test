@@ -1,6 +1,6 @@
 package com.soebes.cli.cli_test;
 
-import junit.framework.Assert;
+import static junit.framework.Assert.assertTrue;
 
 import org.testng.annotations.Test;
 
@@ -13,7 +13,7 @@ public class SupoSECLITest {
     public void helpTest() {
         String[] args = {"--help"};
         SupoSECommands cli = new SupoSECommands(args);
-        Assert.assertTrue(cli.getMainCommand().isHelp());
+        assertTrue(cli.getMainCommand().isHelp());
 
 
 //        StringBuilder help = new StringBuilder();

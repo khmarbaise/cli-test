@@ -1,9 +1,10 @@
 package com.soebes.cli.cli_test;
 
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertTrue;
+
 import java.net.MalformedURLException;
 import java.net.URL;
-
-import junit.framework.Assert;
 
 import org.testng.annotations.Test;
 
@@ -24,73 +25,73 @@ public class ScanCommandTest {
     public void scanCommandMissingURLTest() throws MalformedURLException {
         String[] args = {"scan", "--create"};
         SupoSECommands cli = new SupoSECommands(args);
-        Assert.assertTrue(cli.getCommand().equals(SupoSEExistingCommands.SCAN));
+        assertTrue(cli.getCommand().equals(SupoSEExistingCommands.SCAN));
 
-        Assert.assertTrue(cli.getScanCommand().isCreateIndex());
+        assertTrue(cli.getScanCommand().isCreateIndex());
     }
 
     @Test
     public void scanCommandTest() throws MalformedURLException {
         String[] args = {"scan", "--url", "file:///test/url", "--create"};
         SupoSECommands cli = new SupoSECommands(args);
-        Assert.assertTrue(cli.getCommand().equals(SupoSEExistingCommands.SCAN));
+        assertTrue(cli.getCommand().equals(SupoSEExistingCommands.SCAN));
 
-        Assert.assertEquals(new URL("file:///test/url"), cli.getScanCommand().getUrl());
-        Assert.assertEquals(true, cli.getScanCommand().isCreateIndex());
+        assertEquals(new URL("file:///test/url"), cli.getScanCommand().getUrl());
+        assertEquals(true, cli.getScanCommand().isCreateIndex());
     }
 
     @Test
     public void scanCommandWithUsernameTest() throws MalformedURLException {
         String[] args = {"scan", "--username", "username", "--url", "file:///test/repos"};
         SupoSECommands cli = new SupoSECommands(args);
-        Assert.assertTrue(cli.getCommand().equals(SupoSEExistingCommands.SCAN));
-        Assert.assertEquals(new URL("file:///test/repos"), cli.getScanCommand().getUrl());
-        Assert.assertEquals("username", cli.getScanCommand().getUsername());
+        assertTrue(cli.getCommand().equals(SupoSEExistingCommands.SCAN));
+        assertEquals(new URL("file:///test/repos"), cli.getScanCommand().getUrl());
+        assertEquals("username", cli.getScanCommand().getUsername());
     }
 
     @Test
     public void scanCommandWithPasswordTest() throws MalformedURLException {
         String[] args = {"scan", "--password", "ThisIsASecret", "--url", "file:///test/repos"};
         SupoSECommands cli = new SupoSECommands(args);
-        Assert.assertTrue(cli.getCommand().equals(SupoSEExistingCommands.SCAN));
-        Assert.assertEquals(new URL("file:///test/repos"), cli.getScanCommand().getUrl());
-        Assert.assertEquals("ThisIsASecret", cli.getScanCommand().getPasswort());
+        assertTrue(cli.getCommand().equals(SupoSEExistingCommands.SCAN));
+        assertEquals(new URL("file:///test/repos"), cli.getScanCommand().getUrl());
+        assertEquals("ThisIsASecret", cli.getScanCommand().getPasswort());
     }
 
     @Test
     public void scanCommandWithFromRevisionHeadTest() throws MalformedURLException {
         String[] args = {"scan", "--fromrev", "head", "--url", "file:///test/repos"};
         SupoSECommands cli = new SupoSECommands(args);
-        Assert.assertTrue(cli.getCommand().equals(SupoSEExistingCommands.SCAN));
-        Assert.assertEquals(new URL("file:///test/repos"), cli.getScanCommand().getUrl());
-        Assert.assertEquals(-1, cli.getScanCommand().getFromRev());
+        assertTrue(cli.getCommand().equals(SupoSEExistingCommands.SCAN));
+        assertEquals(new URL("file:///test/repos"), cli.getScanCommand().getUrl());
+        assertEquals(-1, cli.getScanCommand().getFromRev());
     }
 
     @Test(expectedExceptions = {ParameterException.class})
     public void scanCommandWithWrongFromRevisionTest() throws MalformedURLException {
         String[] args = {"scan", "--fromrev", "XXXX", "--url", "file:///test/repos"};
         SupoSECommands cli = new SupoSECommands(args);
-        Assert.assertTrue(cli.getCommand().equals(SupoSEExistingCommands.SCAN));
-        Assert.assertEquals(new URL("file:///test/repos"), cli.getScanCommand().getUrl());
-        Assert.assertEquals(-1, cli.getScanCommand().getFromRev());
+        assertTrue(cli.getCommand().equals(SupoSEExistingCommands.SCAN));
+        assertEquals(new URL("file:///test/repos"), cli.getScanCommand().getUrl());
+        assertEquals(-1, cli.getScanCommand().getFromRev());
     }
 
     @Test
     public void scanCommandWithFromRevisionTest() throws MalformedURLException {
         String[] args = {"scan", "--fromrev", "123456", "--url", "file:///test/repos"};
         SupoSECommands cli = new SupoSECommands(args);
-        Assert.assertTrue(cli.getCommand().equals(SupoSEExistingCommands.SCAN));
-        Assert.assertEquals(new URL("file:///test/repos"), cli.getScanCommand().getUrl());
-        Assert.assertEquals(123456, cli.getScanCommand().getFromRev());
+        assertTrue(cli.getCommand().equals(SupoSEExistingCommands.SCAN));
+        assertEquals(new URL("file:///test/repos"), cli.getScanCommand().getUrl());
+        assertEquals(123456, cli.getScanCommand().getFromRev());
     }
 
     @Test
     public void scanCommandFromRevisionAndToRevWithoutGivingAsParameterTest() throws MalformedURLException {
         String[] args = {"scan", "--url", "file:///test/repos"};
         SupoSECommands cli = new SupoSECommands(args);
-        Assert.assertTrue(cli.getCommand().equals(SupoSEExistingCommands.SCAN));
-        Assert.assertEquals(new URL("file:///test/repos"), cli.getScanCommand().getUrl());
-        Assert.assertEquals(1, cli.getScanCommand().getFromRev());
-        Assert.assertEquals(-1, cli.getScanCommand().getToRev());
+        assertTrue(cli.getCommand().equals(SupoSEExistingCommands.SCAN));
+        assertEquals(new URL("file:///test/repos"), cli.getScanCommand().getUrl());
+        assertEquals(1, cli.getScanCommand().getFromRev());
+        assertEquals(-1, cli.getScanCommand().getToRev());
     }
 }
