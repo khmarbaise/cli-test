@@ -72,13 +72,12 @@ public class SupoSECLI {
     }
 
     /**
-     * This is the <code>pws --version</code>
+     * This is the <code>supose --version</code>
      */
     private void printVersion() {
         Properties properties = new Properties();
         try {
-            properties.load(this.getClass().getResourceAsStream(
-                    "/version.properties"));
+            properties.load(this.getClass().getResourceAsStream("/version.properties"));
         } catch (IOException e) {
             LOGGER.error("Can't read the version.properties file.", e);
             return;
