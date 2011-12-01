@@ -38,36 +38,49 @@ public class SupoSECLI {
         }
 
         SupoSECommands.SupoSEExistingCommands command = commands.getCommand();
-        if (commands.isHelpForCommand()) {
-            commands.getCommander().usage(command.getCommandName());
-            return;
-        }
-
         if (commands.getMainCommand().isVersion()) {
             printVersion();
             return;
         }
 
-        if (command == null || commands.getMainCommand().isHelp()
-                || (args.length == 0)) {
+        if (command == null
+                || (args == null) || (args.length == 0)
+                || commands.getMainCommand().isHelp()) {
+            LOGGER.warn(" command:" + command + " args:" + args);
+            if (args != null) {
+                StringBuilder sb = new StringBuilder();
+                sb.append("l=" + args.length + " ");
+                for (int i = 0; i < args.length; i++) {
+                    sb.append("arg[" + i + "]='" + args[i] + "' ");
+                }
+                LOGGER.warn(" args:" + sb);
+            }
+            LOGGER.warn("Nur usage() ausgeben");
             commands.getCommander().usage();
             return;
         }
 
+        if (commands.isHelpForCommand()) {
+            LOGGER.warn("usage for a particular command");
+            commands.getCommander().usage(command.getCommandName());
+            return;
+        }
+
+
         switch (command) {
-        case MERGE:
-            mergeCommand(commands.getMergeCommand());
-            break;
-        case SCAN:
-            scanCommand(commands.getScanCommand());
-            break;
-        case SEARCH:
-            searchCommand(commands.getSearchCommand());
-            break;
-        default:
-            LOGGER.error("Unknown command in switch.");
-            setReturnCode(1);
-            break;
+            case MERGE:
+                mergeCommand(commands.getMergeCommand());
+                break;
+            case SCAN:
+                scanCommand(commands.getScanCommand());
+                break;
+            case SEARCH:
+                searchCommand(commands.getSearchCommand());
+                break;
+            default:
+                LOGGER.error("Unknown command in switch.");
+                setReturnCode(1);
+                break;
         }
     }
 
@@ -106,5 +119,11 @@ public class SupoSECLI {
 
     private void searchCommand(SearchCommand command) {
         System.out.println("The search command");
+    }
+
+    public static void main(String[] args) {
+        SupoSECLI cli = new SupoSECLI();
+        cli.run(args);
+        System.exit(cli.getReturnCode());
     }
 }
