@@ -25,10 +25,10 @@ public class SupoSECLITest {
 //        cli.getCommander().usage();
 //    }
     
-    @Test
-    public void testWithoutArgumentsInSupoSECLI() {
-        String[] args = { };
-        SupoSECLI cli = new SupoSECLI();
-        cli.run(args);
-    }
+//    @Test
+//    public void testWithoutArgumentsInSupoSECLI() {
+//        String[] args = { };
+//        SupoSECLI cli = new SupoSECLI();
+//        cli.run(args);
+//    }
 }
